@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1041485239575",
+    "firebase_url": "https://capstone-project-520de.firebaseio.com",
+    "project_id": "capstone-project-520de",
+    "storage_bucket": "capstone-project-520de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041485239575:android:a6f96e0fb80d1176",
+        "android_client_info": {
+          "package_name": "com.philliphsu.clock2.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041485239575-gbjh8q7ouijuna3csjssh96pr2emn172.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK5Im2q9vfYWKuRLdvM65OFVptAFukiMc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
