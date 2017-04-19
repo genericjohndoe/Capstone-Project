@@ -128,8 +128,8 @@
             android:name=".debug.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <provider
-            android:authorities="com.philliphsu.clock2.data.ActivityProvider"
-            android:name="com.philliphsu.clock2.data.provider.ActivityProvider"
+            android:authorities="com.philliphsu.clock2.app"
+            android:name="com.philliphsu.clock2.data.ActivityProvider"
             android:exported="false">
         </provider>
     </application>

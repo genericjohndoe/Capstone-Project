@@ -277,11 +277,11 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         super.onPause();
         long timeRunning = startDateAndTime - endDateAndTime;
         ContentValues mNewValues = new ContentValues();
-        mNewValues.put(ActivityColumns.DATE, Calendar.getInstance().getTimeInMillis());
-        mNewValues.put(ActivityColumns.DIST_RAN, distanceRan*0.000621371);//value converts meters to miles
-        mNewValues.put(ActivityColumns.TIME_RUNNING, timeRunning/1000/60); //converts milliseconds to minutes
-        mNewValues.put(ActivityColumns.IS_LONG_DIST, 1);
-        getActivity().getContentResolver().insert(ActivityProvider.BASE_CONTENT_URI, mNewValues);
+        mNewValues.put(ActivityColumns.ActivityEntry.DATE, Calendar.getInstance().getTimeInMillis());
+        mNewValues.put(ActivityColumns.ActivityEntry.DIST_RAN, distanceRan*0.000621371);//value converts meters to miles
+        mNewValues.put(ActivityColumns.ActivityEntry.TIME_RUNNING, timeRunning/1000/60); //converts milliseconds to minutes
+        mNewValues.put(ActivityColumns.ActivityEntry.IS_LONG_DIST, 1);
+        getActivity().getContentResolver().insert(ActivityColumns.ActivityEntry.CONTENT_URI, mNewValues);
     }
 
     @Override
