@@ -89,6 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (menuResId() != 0) {
             getMenuInflater().inflate(menuResId(), menu);
             mMenu = menu;
+            MainActivity.weatherData = mMenu.findItem(R.id.weather_data);
         }
         return super.onCreateOptionsMenu(menu);
     }

@@ -56,6 +56,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.SphericalUtil;
 import com.philliphsu.clock2.R;
+import com.philliphsu.clock2.WeatherAsyncTask;
 import com.philliphsu.clock2.data.ActivityColumns;
 import com.philliphsu.clock2.list.RecyclerViewFragment;
 import com.philliphsu.clock2.stopwatch.Lap;
@@ -118,6 +119,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     private WeakReference<FloatingActionButton> mActivityFab;
     private Drawable mStartDrawable;
     private Drawable mPauseDrawable;
+    public static Location mlocation;
 
     @Bind(R.id.chronometer)
     ChronometerWithMillis mChronometer;
@@ -154,6 +156,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
             public void onLocationChanged(Location location) {
                 Log.i("MapsActivity", "onLocationChanged");
                 //mPLO.add(new LatLng(location.getLatitude(), location.getLongitude()));
+                mlocation = location;
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 20));
                 if (mPLO != null & pause) {
                     LatLng myLatLng = new LatLng(location.getLatitude(), location.getLongitude());

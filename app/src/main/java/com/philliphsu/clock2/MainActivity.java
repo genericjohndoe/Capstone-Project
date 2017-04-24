@@ -39,6 +39,7 @@ import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.philliphsu.clock2.data.BaseItemCursor;
 import com.philliphsu.clock2.list.RecyclerViewFragment;
@@ -64,6 +65,7 @@ public class MainActivity extends BaseActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private Drawable             mAddItemDrawable;
+    public static MenuItem       weatherData;
 
 
     @Bind(container)
@@ -86,6 +88,7 @@ public class MainActivity extends BaseActivity {
         // in my own test, drawing still isn't finished by onResume().
         // Post a message in the UI events queue to be executed after drawing is complete,
         // so that we may get their dimensions.
+
         rootView.post(new Runnable() {
             @Override
             public void run() {
@@ -309,6 +312,16 @@ public class MainActivity extends BaseActivity {
         if (id == R.id.action_settings) {
             startActivityForResult(new Intent(this, SettingsActivity.class), REQUEST_THEME_CHANGE);
             return true;
+        }
+        if (id == R.id.weather_data) {
+            if (StopwatchMapFragment.mlocation != null) {
+                new WeatherAsyncTask().execute(StopwatchMapFragment.mlocation);
+            } else {
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(this, getString(R.string.location), duration);
+                toast.show();
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
