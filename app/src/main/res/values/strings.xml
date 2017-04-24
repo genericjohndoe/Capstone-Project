@@ -236,4 +236,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="date_format" translatable="false">yyyy-MM-dd</string>
+    <string name="run_stopped">Run stopped</string>
+    <string name="new_lap_button">New lap started after </string>
+    <string name="test_device_id" translatable="false">9692F3E2772FD63F55432E2D8B26FD86</string>
+    <string name="no_fragment">No fragment can be instantiated for position </string>
+    <string name="content_authority">com.example.android.sunshine.app</string>
+    <string name="sync_account_type">sunshine.example.com</string>
 </resources>

@@ -2,22 +2,21 @@ package com.philliphsu.clock2.stopwatch.ui;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -39,9 +38,15 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,7 +57,6 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.maps.android.SphericalUtil;
 import com.philliphsu.clock2.R;
 import com.philliphsu.clock2.data.ActivityColumns;
-import com.philliphsu.clock2.data.ActivityProvider;
 import com.philliphsu.clock2.list.RecyclerViewFragment;
 import com.philliphsu.clock2.stopwatch.Lap;
 import com.philliphsu.clock2.stopwatch.StopwatchNotificationService;
@@ -61,17 +65,12 @@ import com.philliphsu.clock2.stopwatch.data.LapsCursorLoader;
 import com.philliphsu.clock2.util.ProgressBarUtils;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 /**
  * Created by joeljohnson on 3/29/17.
@@ -82,7 +81,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         LapViewHolder,
         LapCursor,
         LapsAdapter> implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, RecognitionListener {
+        GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "StopwatchMapFragment";
 
@@ -106,7 +105,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     private long endDateAndTime;
     private double distanceRan = 0;
     InterstitialAd mInterstitialAd;
-
+    public static String receivedCommand;
 
 
     // Exposed for StopwatchNotificationService
@@ -129,15 +128,6 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     @Bind(R.id.seek_bar)
     SeekBar mSeekBar;
 
-    //public StopwatchMapFragment(){
-    //    this.timerListener = null;
-    //}
-
-    /*public StopwatchMapFragment setTimerListener(TimerListener timerListener){
-        this.timerListener = timerListener;
-        return this;
-    }*/
-
     /**
      * This is called only when a new instance of this Fragment is being created,
      * especially if the user is navigating to this tab for the first time in
@@ -157,7 +147,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .build();
-        mGoogleApiClient.connect();
+
 
         locationListener = new LocationListener() {
             @Override
@@ -170,19 +160,12 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
                     List<LatLng> points = polyline.getPoints();
                     points.add(myLatLng);
                     polyline.setPoints(points);
-                    if (points.size() >= 2){
-                        distanceRan += SphericalUtil.computeDistanceBetween(points.get(points.size()-2),points.get(points.size()-1));
+                    if (points.size() >= 2) {
+                        distanceRan += SphericalUtil.computeDistanceBetween(points.get(points.size() - 2), points.get(points.size() - 1));
                     }
                 }
             }
         };
-
-        if (SpeechRecognizer.isRecognitionAvailable(getContext())) {
-            initSpeechRecognizer();
-            initRecognizerIntent();
-            SpeakNow(null);
-        }
-
 
         mInterstitialAd = new InterstitialAd(getContext());
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -191,21 +174,18 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
             @Override
             public void onAdClosed() {
                 ViewPager vp = (ViewPager) getActivity().findViewById(R.id.container);
-                vp.setCurrentItem(3, true);
+                vp.setCurrentItem(1, true);
             }
         });
 
         requestNewInterstitial();
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView()");
+        //Log.d(TAG, "onCreateView()");
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        //mapView = (MapView) view.findViewById(R.id.map);
-        //mapView.getMapAsync(this);
         mChronometer.setShowCentiseconds(true, true);
         long startTime = getLongFromPref(KEY_START_TIME);
         long pauseTime = getLongFromPref(KEY_PAUSE_TIME);
@@ -230,6 +210,9 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         // our Activity's FAB yet, so this call does nothing with the FAB.
         setMiniFabsVisible(startTime > 0);
         mPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
+        mChronometer.setContentDescription(mChronometer.getText());
+        mStopButton.setContentDescription(getString(R.string.run_stopped));
+        mNewLapButton.setContentDescription(getString(R.string.new_lap_button) + mChronometer.getText());
         return view;
     }
 
@@ -264,6 +247,31 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
             syncFabIconWithStopwatchState(isStopwatchRunning());
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            // Check for the integer request code originally supplied to startResolutionForResult().
+            case REQUEST_CHECK_SETTINGS:
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        //Log.i(TAG, "User agreed to make required location settings changes.");
+                        startLocationUpdates();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        //Log.i(TAG, "User chose not to make required location settings changes.");
+                        break;
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -273,22 +281,25 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     }
 
     @Override
-    public void onPause(){
+    public void onPause() {
         super.onPause();
+        //Log.i(LOG_TAG, "onPause() called");
         long timeRunning = startDateAndTime - endDateAndTime;
         ContentValues mNewValues = new ContentValues();
         mNewValues.put(ActivityColumns.ActivityEntry.DATE, Calendar.getInstance().getTimeInMillis());
-        mNewValues.put(ActivityColumns.ActivityEntry.DIST_RAN, distanceRan*0.000621371);//value converts meters to miles
-        mNewValues.put(ActivityColumns.ActivityEntry.TIME_RUNNING, timeRunning/1000/60); //converts milliseconds to minutes
+        mNewValues.put(ActivityColumns.ActivityEntry.DIST_RAN, distanceRan * 0.000621371);//value converts meters to miles
+        mNewValues.put(ActivityColumns.ActivityEntry.TIME_RUNNING, timeRunning / 1000 / 60); //converts milliseconds to minutes
         mNewValues.put(ActivityColumns.ActivityEntry.IS_LONG_DIST, 1);
-        getActivity().getContentResolver().insert(ActivityColumns.ActivityEntry.CONTENT_URI, mNewValues);
+        //Log.i(LOG_TAG, mNewValues.toString());
+        //Uri mUri = getActivity().getContentResolver().insert(ActivityColumns.ActivityEntry.CONTENT_URI, mNewValues);
+        //Log.i(LOG_TAG,"data added: " + mUri.toString());
     }
 
     @Override
     public void onStop() {
-        mGoogleApiClient.disconnect();
         LocationServices.FusedLocationApi.removeLocationUpdates(
                 mGoogleApiClient, locationListener);
+        mGoogleApiClient.disconnect();
         super.onStop();
     }
 
@@ -309,7 +320,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         if (mProgressAnimator != null) {
             mProgressAnimator.removeAllListeners();
         }
-        Log.d(TAG, "onDestroyView()");
+        //Log.d(TAG, "onDestroyView()");
         mPrefs.unregisterOnSharedPreferenceChangeListener(mPrefChangeListener);
     }
 
@@ -320,12 +331,12 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
 
     @Override
     public Loader<LapCursor> onCreateLoader(int id, Bundle args) {
-            return new LapsCursorLoader(getActivity());
+        return new LapsCursorLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<LapCursor> loader, LapCursor data) {
-        Log.d(TAG, "onLoadFinished()");
+        //Log.d(TAG, "onLoadFinished()");
         super.onLoadFinished(loader, data);
         // TODO: Will manipulating the cursor's position here affect the current
         // position in the adapter? Should we make a defensive copy and manipulate
@@ -378,7 +389,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("9692F3E2772FD63F55432E2D8B26FD86")
+                .addTestDevice(getString(R.string.test_device_id))
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
@@ -389,7 +400,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     public void onFabClick() {
         final boolean running = mChronometer.isRunning();
         syncFabIconWithStopwatchState(!running/*invert the current state*/);
-
+        pause = running;
         final Intent serviceIntent = new Intent(getActivity(), StopwatchNotificationService.class);
         if (getLongFromPref(KEY_START_TIME) == 0) {
             setMiniFabsVisible(true);
@@ -398,7 +409,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         }
         serviceIntent.setAction(StopwatchNotificationService.ACTION_START_PAUSE);
         getActivity().startService(serviceIntent);
-        SpeakNow(null);
+        startDateAndTime = Calendar.getInstance().getTimeInMillis();
     }
 
     @Override
@@ -430,6 +441,10 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         Intent stop = new Intent(getActivity(), StopwatchNotificationService.class)
                 .setAction(StopwatchNotificationService.ACTION_STOP);
         getActivity().startService(stop);
+        endDateAndTime = Calendar.getInstance().getTimeInMillis();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 
     private void setMiniFabsVisible(boolean visible) {
@@ -589,12 +604,15 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         statusCheck();
         // Get the current location of the device and set the position of the map.
         //nullpointerexception seen
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
+        if (statusCheck()) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
+        }
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.i("SWMF", "onConnected called");
+        //Log.i("SWMF", "onConnected called");
+        //if (mGoogleApiClient.isConnected()) Log.i("SWMF", "client is connected");
         mapFragment = SupportMapFragment.newInstance();
         FragmentTransaction fragmentTransaction =
                 getFragmentManager().beginTransaction();
@@ -615,10 +633,12 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     }
 
     @Override
-    public void onConnectionSuspended(int i) {}
+    public void onConnectionSuspended(int i) {
+    }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {}
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
 
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
@@ -656,176 +676,59 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         try {
             LocationServices.FusedLocationApi.requestLocationUpdates(
                     mGoogleApiClient, mLocationRequest, locationListener);
-        } catch (SecurityException e) {}
+        } catch (SecurityException e) {
+        }
     }
 
-    public void statusCheck() {
+    public boolean statusCheck() {
         final LocationManager manager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
-
+            return false;
         }
+        return true;
     }
+
+    protected static final int REQUEST_CHECK_SETTINGS = 0x1;
 
     private void buildAlertMessageNoGps() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
-    }
 
-    /*public interface TimerListener {
-        public void startActivity();
-    }*/
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        PendingResult<LocationSettingsResult> result =
+                LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
+                        builder.build());
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+            @Override
+            public void onResult(LocationSettingsResult result) {
+                final Status status = result.getStatus();
 
-    public class SilenceTimer extends TimerTask {
-        @Override
-        public void run() {
-                /*onError(SpeechRecognizer.ERROR_SPEECH_TIMEOUT)*/;
-        }
-    }
-    private void initRecognizerIntent() {
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en-US");
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getContext().getPackageName());
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-        //Log.i(LOG_TAG, "initRecognizerIntent");
-    }
-
-
-    private void initSpeechRecognizer() {
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getContext());
-        speechRecognizer.setRecognitionListener(this);
-        //Log.i(LOG_TAG, "initSpeechRecognizer");
-    }
-
-    @Override
-    public void onReadyForSpeech(Bundle bundle) {
-        Log.i(LOG_TAG, "onReadyForSpeech");
-        speechTimeout = new Timer();
-        speechTimeout.schedule(new SilenceTimer(), 3000);
-    }
-
-    @Override
-    public void onBeginningOfSpeech() {
-        Log.i(LOG_TAG, "onBeginningOfSpeech");
-        speechTimeout.cancel();
-    }
-
-    @Override
-    public void onRmsChanged(float v) {
-        Log.i(LOG_TAG, "onRmsChanged");
-    }
-
-    @Override
-    public void onBufferReceived(byte[] bytes) {
-        Log.i(LOG_TAG, "onBufferReceived");
-    }
-
-    @Override
-    public void onEndOfSpeech() {
-        Log.i(LOG_TAG, "onEndOfSpeech");
-    }
-
-    @Override
-    public void onError(int i) {
-        String message;
-        boolean restart = true;
-        switch (i) {
-            case SpeechRecognizer.ERROR_AUDIO:
-                message = "Audio recording error";
-                break;
-            case SpeechRecognizer.ERROR_CLIENT:
-                message = "Client side error";
-                restart = false;
-                break;
-            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "Insufficient permissions";
-                restart = false;
-                break;
-            case SpeechRecognizer.ERROR_NETWORK:
-                message = "Network error";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "Network timeout";
-                break;
-            case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "No match";
-                break;
-            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RecognitionService busy";
-                break;
-            case SpeechRecognizer.ERROR_SERVER:
-                message = "error from server";
-                break;
-            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "No speech input";
-                break;
-            default:
-                message = "Not recognised";
-                break;
-        }
-        Log.d(LOG_TAG, "onError code:" + i + " message: " + message);
-        if (restart) {
-            speechRecognizer.cancel();
-            SpeakNow(null);
-        }
-    }
-
-    @Override
-    public void onResults(Bundle bundle) {
-        ArrayList<String> result = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        Log.i(LOG_TAG, result.get(0).toString());
-        if (result.get(0).toString().equals("go")) {
-            onFabClick();
-            pause = true;
-        } else if (result.get(0).toString().equals("stop")) {
-            stop();
-            pause = false;
-            endDateAndTime = Calendar.getInstance().getTimeInMillis();
-        } else if (result.get(0).toString().equals("paws") || result.get(0).toString().equals("pause") || result.get(0).toString().equals("Paul's")) {
-            onFabClick();
-            pause = false;
-        } else if (result.get(0).toString().equals("end")){
-            stop();
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.SUCCESS:
+                        // All location settings are satisfied. The client can
+                        // initialize location requests here.
+                        break;
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        // Location settings are not satisfied, but this can be fixed
+                        // by showing the user a dialog.
+                        try {
+                            // Show the dialog by calling startResolutionForResult(),
+                            // and check the result in onActivityResult().
+                            status.startResolutionForResult(
+                                    StopwatchMapFragment.this.getActivity(),
+                                    REQUEST_CHECK_SETTINGS);
+                        } catch (SendIntentException e) {
+                            // Ignore the error.
+                        }
+                        break;
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        // Location settings are not satisfied. However, we have no way
+                        // to fix the settings so we won't show the dialog.
+                        break;
+                }
             }
-            speechRecognizer.destroy();
-            speechRecognizer = null;
-        }
-        Log.i(LOG_TAG, "onResults");
-        if (speechRecognizer != null) SpeakNow(null);
+        });
 
     }
-    @Override
-    public void onPartialResults(Bundle bundle) {
-        Log.i(LOG_TAG, "onPartialResults");
-    }
-
-    @Override
-    public void onEvent(int i, Bundle bundle) {
-        Log.i(LOG_TAG, "onEvent");
-    }
-
-    public void SpeakNow(View view) {
-        speechRecognizer.startListening(recognizerIntent);
-        Log.i(LOG_TAG, "SpeakNow");
-        startDateAndTime = Calendar.getInstance().getTimeInMillis();
-    }
-
 }

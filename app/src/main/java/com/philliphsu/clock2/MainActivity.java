@@ -35,19 +35,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.philliphsu.clock2.alarms.ui.AlarmsFragment;
 import com.philliphsu.clock2.data.BaseItemCursor;
 import com.philliphsu.clock2.list.RecyclerViewFragment;
 import com.philliphsu.clock2.settings.SettingsActivity;
 import com.philliphsu.clock2.stopwatch.ui.StopwatchMapFragment;
 import com.philliphsu.clock2.timepickers.Utils;
-import com.philliphsu.clock2.timers.ui.TimersFragment;
 
 import butterknife.Bind;
 
@@ -60,15 +57,14 @@ public class MainActivity extends BaseActivity {
 
     public static final int    PAGE_ALARMS          = 0;
     public static final int    PAGE_TIMERS          = 1;
-    public static final int    PAGE_STOPWATCH       = 2;//originally 2
-    public static final int    PAGE_DATA            = 3;
+    public static final int    PAGE_STOPWATCH       = 0;//originally 2
+    public static final int    PAGE_DATA            = 1;
     public static final int    REQUEST_THEME_CHANGE = 5;
     public static final String EXTRA_SHOW_PAGE      = "com.philliphsu.clock2.extra.SHOW_PAGE";
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private Drawable             mAddItemDrawable;
-    private static String command;
-    private boolean pause;
+
 
     @Bind(container)
     ViewPager mViewPager;
@@ -93,7 +89,7 @@ public class MainActivity extends BaseActivity {
         rootView.post(new Runnable() {
             @Override
             public void run() {
-                if (mViewPager.getCurrentItem() == mSectionsPagerAdapter.getCount() - 1) {
+                if (mViewPager.getCurrentItem() == 0) {
                     // Restore the FAB's translationX from a previous configuration.
                     mFab.setTranslationX(mViewPager.getWidth() / -2f + getFabPixelOffsetForXTranslation());
                 }
@@ -111,11 +107,11 @@ public class MainActivity extends BaseActivity {
              */
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d(TAG, String.format("pos = %d, posOffset = %f, posOffsetPixels = %d",
-                        position, positionOffset, positionOffsetPixels));
+                /*Log.d(TAG, String.format("pos = %d, posOffset = %f, posOffsetPixels = %d",
+                        position, positionOffset, positionOffsetPixels));*/
                 int pageBeforeLast = mSectionsPagerAdapter.getCount() - 2;
-                if (position <= pageBeforeLast) {
-                    if (position < pageBeforeLast) {
+                if (position == 1) {
+                    //if (position < pageBeforeLast) {
                         // When the scrolling is due to tab selection between multiple tabs apart,
                         // this callback is called for each intermediate page, but each of those pages
                         // will briefly register a sparsely decreasing range of positionOffsets, always
@@ -125,7 +121,8 @@ public class MainActivity extends BaseActivity {
                         // returning the FAB to its target position.
                         // TODO: The animation visibly skips to the end. We could interpolate
                         // intermediate x-positions if we cared to smooth it out.
-                        mFab.setTranslationX(0);
+                        //mFab.setTranslationX(0);
+                    mFab.hide();
                     } else {
                         // Initially, the FAB's translationX property is zero because, at its original
                         // position, it is not translated. setTranslationX() is relative to the view's
@@ -134,19 +131,20 @@ public class MainActivity extends BaseActivity {
                         // translationX value is increasingly negative, the view is translated left.
                         // But as translationX is decreasingly negative and down to zero, the view
                         // is translated right, back to its original position.
-                        float translationX = positionOffsetPixels / -2f;
+                        //float translationX = positionOffsetPixels / -2f;
                         // NOTE: You MUST scale your own additional pixel offsets by positionOffset,
                         // or else the FAB will immediately translate by that many pixels, appearing
                         // to skip/jump.
-                        translationX += positionOffset * getFabPixelOffsetForXTranslation();
-                        mFab.setTranslationX(translationX);
+                        //translationX += positionOffset * getFabPixelOffsetForXTranslation();
+                        //mFab.setTranslationX(translationX);
+                    mFab.show();
                     }
-                }
+
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, "onPageSelected");
+                //Log.d(TAG, "onPageSelected");
                 if (position < mSectionsPagerAdapter.getCount() - 1) {
                     mFab.setImageDrawable(mAddItemDrawable);
                 }
@@ -165,8 +163,8 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         ColorStateList tabIconColor = ContextCompat.getColorStateList(this, R.color.tab_icon_color);
-        setTabIcon(PAGE_ALARMS, R.drawable.ic_alarm_24dp, tabIconColor);
-        setTabIcon(PAGE_TIMERS, R.drawable.ic_timer_24dp, tabIconColor);
+        //setTabIcon(PAGE_ALARMS, R.drawable.ic_alarm_24dp, tabIconColor);
+        //setTabIcon(PAGE_TIMERS, R.drawable.ic_timer_24dp, tabIconColor);
         setTabIcon(PAGE_STOPWATCH, R.drawable.ic_stopwatch_24dp, tabIconColor);
 
         // TODO: @OnCLick instead.
@@ -180,7 +178,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        mAddItemDrawable = ContextCompat.getDrawable(this, R.drawable.ic_add_24dp);
+        mAddItemDrawable = ContextCompat.getDrawable(this, R.drawable.ic_start_24dp);
         handleActionScrollToStableId(getIntent(), false);
     }
 
@@ -347,10 +345,10 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case PAGE_ALARMS:
+                /*case PAGE_ALARMS:
                     return new AlarmsFragment();
                 case PAGE_TIMERS:
-                    return new TimersFragment();
+                    return new TimersFragment();*/
                 case PAGE_STOPWATCH:
                     return new StopwatchMapFragment();
                 case PAGE_DATA:
@@ -375,7 +373,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return 2;
         }
 
         public Fragment getFragment(int position) {

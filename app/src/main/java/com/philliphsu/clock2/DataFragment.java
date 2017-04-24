@@ -1,13 +1,15 @@
 package com.philliphsu.clock2;
 
-import android.app.LoaderManager;
+
 import android.content.Context;
-import android.content.CursorLoader;
-import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -29,107 +32,58 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.Bind;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DataFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DataFragment#newInstance} factory method to
- * create an instance of this fragment.
+ *
  */
-public class DataFragment extends Fragment implements LoaderManager.LoaderCallbacks, IAxisValueFormatter {
+public class DataFragment extends BaseFragment implements LoaderManager.LoaderCallbacks, IAxisValueFormatter {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private Cursor cursor;
     private List<Entry> entries = new ArrayList<Entry>();
-    private LineChart chart;
+    @Bind(R.id.chart) LineChart chart;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public DataFragment() {}
 
-    //private OnFragmentInteractionListener mListener;
 
-    public DataFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DataFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DataFragment newInstance(String param1, String param2) {
-        DataFragment fragment = new DataFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    protected int contentLayout() {
+        return R.layout.fragment_data;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        getLoaderManager().initLoader(0, null, this);
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_data, container, false);
-        chart = (LineChart) rootView.findViewById(R.id.chart);
-        return rootView;
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        chart.setContentDescription("Graphed Data");
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }*/
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        /*if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        //mListener = null;
+
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -142,6 +96,7 @@ public class DataFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onLoadFinished(Loader loader, Object o) {
         cursor = (Cursor) o;
+        Log.i("Logs", ""+cursor.getCount());
         if (cursor.getCount() > 0){
         for (int i = 0; i < cursor.getCount(); i++){
             if (cursor.moveToPosition(i)){
@@ -164,14 +119,14 @@ public class DataFragment extends Fragment implements LoaderManager.LoaderCallba
         XAxis xAxis = chart.getXAxis();
         xAxis.setValueFormatter(this);
         xAxis.setLabelRotationAngle(45f);
+        YAxis yAxis = chart.getAxisLeft();
+        yAxis.setAxisMinimum(0f);
         chart.invalidate();
 
     }
 
     @Override
-    public void onLoaderReset(Loader loader) {
-
-    }
+    public void onLoaderReset(Loader loader) {}
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
