@@ -242,4 +242,6 @@
     <string name="no_fragment">No fragment can be instantiated for position </string>
     <string name="weather_data">Show weather data</string>
     <string name="location">Please wait for Go! to find your location</string>
+    <string name="widget_title" translatable="false">Go! Widget</string>
+    <string name="no_activity">No times to display</string>
 </resources>

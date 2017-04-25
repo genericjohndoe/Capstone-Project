@@ -41,7 +41,7 @@ public class ActivityColumns {
 
         public final static String IS_LONG_DIST = "is_long_dist"; //not shown
 
-        public static Uri buildMovieUri(long id) {
+        public static Uri buildActivityUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }

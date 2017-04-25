@@ -135,6 +135,16 @@
             android:name="com.philliphsu.clock2.data.ActivityProvider"
             android:exported="false">
         </provider>
+        <receiver
+            android:name=".widget.ActivityWidgetProvider"
+            android:label="@string/widget_title" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.sam_chordas.android.stockhawkapp.ACTION_DATA_UPDATED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget" />
+        </receiver>
 
     </application>
 

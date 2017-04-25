@@ -107,4 +107,7 @@
     <dimen name="text_size_subtitle_toolbar">16dp</dimen>
     <dimen name="text_size_title">20sp</dimen>
     <dimen name="text_size_title_toolbar">20dp</dimen>
+
+    <dimen name="widget_detail_default_width">110dp</dimen>
+    <dimen name="widget_detail_default_height">180dp</dimen>
 </resources>
