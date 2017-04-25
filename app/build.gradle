@@ -68,7 +68,7 @@ android {
             // perform analysis at the bytecode level—inside and across methods—
             // to reduce your APK size further and help it run faster."
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            //signingConfig signingConfigs.release
         }
         debug {
             applicationIdSuffix ".debug"
