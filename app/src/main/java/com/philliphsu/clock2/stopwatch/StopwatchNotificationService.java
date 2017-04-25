@@ -35,7 +35,8 @@ import com.philliphsu.clock2.chronometer.ChronometerDelegate;
 import com.philliphsu.clock2.stopwatch.data.AsyncLapsTableUpdateHandler;
 import com.philliphsu.clock2.stopwatch.ui.StopwatchFragment;
 import com.philliphsu.clock2.util.ContentIntentUtils;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class StopwatchNotificationService extends ChronometerNotificationService {
     private static final String TAG = "StopwatchNotifService";
 

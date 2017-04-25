@@ -31,6 +31,8 @@ import java.io.IOException;
  *
  * A MediaPlayer configured to play a ringtone in a loop.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class RingtoneLoop {
 
     private final Context mContext;

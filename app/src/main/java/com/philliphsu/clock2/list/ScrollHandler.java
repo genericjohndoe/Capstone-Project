@@ -22,6 +22,8 @@ package com.philliphsu.clock2.list;
 /**
  * Created by Phillip Hsu on 7/6/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public interface ScrollHandler {
     /**
      * Specifies the stable id of the item we should scroll to in the list.

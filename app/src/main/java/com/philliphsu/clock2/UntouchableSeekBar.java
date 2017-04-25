@@ -27,6 +27,8 @@ import android.view.MotionEvent;
 /**
  * A SeekBar that cannot be touch controlled.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class UntouchableSeekBar extends AppCompatSeekBar {
 
     public UntouchableSeekBar(Context context) {

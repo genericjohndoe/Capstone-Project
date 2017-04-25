@@ -23,12 +23,11 @@ import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
-import com.philliphsu.clock2.dialogs.DialogFragmentController;
-import com.philliphsu.clock2.dialogs.RingtonePickerDialog;
-
 /**
  * Created by Phillip Hsu on 9/20/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class RingtonePickerDialogController extends DialogFragmentController<RingtonePickerDialog> {
     private static final String TAG = "RingtonePickerCtrller";
 

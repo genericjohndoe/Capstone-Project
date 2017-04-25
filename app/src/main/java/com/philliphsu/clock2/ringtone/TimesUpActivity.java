@@ -36,7 +36,8 @@ import com.philliphsu.clock2.timers.TimerNotificationService;
 import com.philliphsu.clock2.timers.data.AsyncTimersTableUpdateHandler;
 import com.philliphsu.clock2.R;
 import com.philliphsu.clock2.timers.Timer;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimesUpActivity extends RingtoneActivity<Timer> {
     private static final String TAG = "TimesUpActivity";
 

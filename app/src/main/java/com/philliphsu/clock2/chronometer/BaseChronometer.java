@@ -33,6 +33,8 @@ import android.widget.TextView;
  * Based on the framework's Chronometer class. Can be configured as a countdown
  * chronometer and can also show centiseconds.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class BaseChronometer extends TextView {
     private static final String TAG = "BaseChronometer";
 

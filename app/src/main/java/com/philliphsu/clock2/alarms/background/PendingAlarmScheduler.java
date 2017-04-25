@@ -37,6 +37,8 @@ import static com.philliphsu.clock2.util.Preconditions.checkNotNull;
  * to {@link Alarm#ringsAt()}, the value returned refers to the next time the alarm will recur.
  */
 // TODO: Consider registering this locally instead of in the manifest.
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class PendingAlarmScheduler extends BroadcastReceiver {
     // We include the class name in the string to distinguish this constant from the one defined
     // in UpcomingAlarmReceiver.

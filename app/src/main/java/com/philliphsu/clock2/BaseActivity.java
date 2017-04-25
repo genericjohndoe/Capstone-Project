@@ -37,6 +37,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Phillip Hsu on 5/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//added reference to  MainActivity.weatherData object
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable

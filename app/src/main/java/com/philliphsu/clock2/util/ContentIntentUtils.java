@@ -36,6 +36,8 @@ import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
  * open the app, scroll to the specified page, and then scroll to the
  * item with the specified stable id.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class ContentIntentUtils {
 
     public static PendingIntent create(@NonNull Context context, int targetPage, long stableId) {

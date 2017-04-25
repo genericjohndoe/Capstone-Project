@@ -24,6 +24,8 @@ import android.content.res.Resources;
 /**
  * Created by Phillip Hsu on 8/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class ConfigurationUtils {
 
     public static int getOrientation(Resources res) {

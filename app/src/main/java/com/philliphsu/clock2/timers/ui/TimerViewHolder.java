@@ -52,6 +52,8 @@ import butterknife.OnClick;
 /**
  * Created by Phillip Hsu on 7/25/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimerViewHolder extends BaseViewHolder<Timer> {
     private static final String TAG = "TimerViewHolder";
 

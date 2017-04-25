@@ -37,6 +37,8 @@ import static com.philliphsu.clock2.alarms.misc.DaysOfWeek.WEDNESDAY;
 /**
  * Created by Phillip Hsu on 7/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmsTableManager extends DatabaseTableManager<Alarm> {
 
     public AlarmsTableManager(Context context) {

@@ -35,6 +35,8 @@ import com.philliphsu.clock2.util.ParcelableUtil;
 /**
  * Created by Phillip Hsu on 8/2/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class AsyncTimersTableUpdateHandler extends AsyncDatabaseTableUpdateHandler<Timer, TimersTableManager> {
     private static final String TAG = "TimersTableUpdater"; // TAG max 23 chars
 

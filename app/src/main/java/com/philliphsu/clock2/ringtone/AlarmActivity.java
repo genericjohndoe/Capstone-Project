@@ -33,7 +33,8 @@ import com.philliphsu.clock2.alarms.misc.AlarmController;
 import com.philliphsu.clock2.ringtone.playback.AlarmRingtoneService;
 import com.philliphsu.clock2.ringtone.playback.RingtoneService;
 import com.philliphsu.clock2.util.TimeFormatUtils;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmActivity extends RingtoneActivity<Alarm> {
     private static final String TAG = "AlarmActivity";
 

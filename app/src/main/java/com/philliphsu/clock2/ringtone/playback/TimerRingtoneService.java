@@ -32,7 +32,8 @@ import com.philliphsu.clock2.timers.Timer;
 import com.philliphsu.clock2.timers.TimerController;
 import com.philliphsu.clock2.timers.TimerNotificationService;
 import com.philliphsu.clock2.timers.data.AsyncTimersTableUpdateHandler;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimerRingtoneService extends RingtoneService<Timer> {
     private static final String TAG = "TimerRingtoneService";
 

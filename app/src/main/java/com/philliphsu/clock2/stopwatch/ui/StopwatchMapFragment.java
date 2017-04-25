@@ -76,6 +76,8 @@ import butterknife.OnClick;
 /**
  * Created by joeljohnson on 3/29/17.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//adapted from StopwatchFragment.java. Added mapfragment, google API client, location services
 
 public class StopwatchMapFragment extends RecyclerViewFragment<
         Lap,

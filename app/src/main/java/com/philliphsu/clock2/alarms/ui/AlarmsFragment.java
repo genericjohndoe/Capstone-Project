@@ -40,7 +40,8 @@ import com.philliphsu.clock2.list.RecyclerViewFragment;
 import com.philliphsu.clock2.util.DelayedSnackbarHandler;
 
 import static com.philliphsu.clock2.util.FragmentTagUtils.makeTag;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmsFragment extends RecyclerViewFragment<Alarm, BaseAlarmViewHolder, AlarmCursor,
         AlarmsCursorAdapter> implements BottomSheetTimePickerDialog.OnTimeSetListener {
     private static final String TAG = "AlarmsFragment";

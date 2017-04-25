@@ -43,6 +43,8 @@ import butterknife.OnLongClick;
 import butterknife.OnTouch;
 
 // TODO: Rename to CreateTimerActivity
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class EditTimerActivity extends BaseActivity implements AddLabelDialog.OnLabelSetListener {
     private static final int FIELD_LENGTH = 2;
     private static final String KEY_LABEL = "key_label";

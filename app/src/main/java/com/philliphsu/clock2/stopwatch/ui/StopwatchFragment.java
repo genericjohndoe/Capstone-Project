@@ -56,6 +56,8 @@ import butterknife.OnClick;
  * Created by Phillip Hsu on 8/8/2016.
  */
 //fragment extends custom class
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class StopwatchFragment extends RecyclerViewFragment<
         Lap,
         LapViewHolder,

@@ -42,6 +42,8 @@ import java.util.Locale;
  * Can also be used independent of Chronometer to format elapsed times and return the result
  * as a CharSequence.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class ChronometerDelegate {
     private static final String TAG = "ChronometerDelegate";
 

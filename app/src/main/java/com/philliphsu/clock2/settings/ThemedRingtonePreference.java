@@ -39,6 +39,8 @@ import com.philliphsu.clock2.dialogs.RingtonePickerDialogController;
  * <p>A modified version of the framework's {@link android.preference.RingtonePreference} that
  * uses our {@link RingtonePickerDialog} instead of the system's ringtone picker.</p>
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ThemedRingtonePreference extends RingtonePreference
         implements RingtonePickerDialog.OnRingtoneSelectedListener {
     private static final String TAG = "ThemedRingtonePreference";

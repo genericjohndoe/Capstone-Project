@@ -33,6 +33,8 @@ import com.philliphsu.clock2.util.LocalBroadcastHelper;
  *
  * Efficiently loads and holds a Cursor.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class SQLiteCursorLoader<
         T extends ObjectWithId,
         C extends BaseItemCursor<T>>

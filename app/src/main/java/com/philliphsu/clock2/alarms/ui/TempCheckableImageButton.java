@@ -39,6 +39,8 @@ import android.widget.Checkable;
  * TODO: Now that we have settled on v24 support libs, extend back from CheckableImageButton
  * and get rid of the original code.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TempCheckableImageButton extends AppCompatImageButton implements Checkable {
 
     private static final int[] DRAWABLE_STATE_CHECKED = new int[]{android.R.attr.state_checked};

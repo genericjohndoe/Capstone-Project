@@ -22,6 +22,8 @@ package com.philliphsu.clock2.util;
 /**
  * Created by Phillip Hsu on 5/28/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class Preconditions {
     private Preconditions() {}
 

@@ -30,6 +30,8 @@ import com.philliphsu.clock2.stopwatch.StopwatchNotificationService;
 /**
  * Created by Phillip Hsu on 8/9/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AsyncLapsTableUpdateHandler extends AsyncDatabaseTableUpdateHandler<Lap, LapsTableManager> {
 
     public AsyncLapsTableUpdateHandler(Context context, ScrollHandler scrollHandler) {

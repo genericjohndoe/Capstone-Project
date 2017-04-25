@@ -51,6 +51,8 @@ import java.util.concurrent.TimeUnit;
  *
  * TOneverDO: Change this to not be a started service!
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class RingtoneService<T extends Parcelable> extends Service {
     private static final String TAG = "RingtoneService";
 

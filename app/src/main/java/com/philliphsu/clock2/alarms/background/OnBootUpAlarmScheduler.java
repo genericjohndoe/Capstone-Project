@@ -28,6 +28,8 @@ import com.philliphsu.clock2.alarms.data.AlarmCursor;
 import com.philliphsu.clock2.alarms.data.AlarmsTableManager;
 import com.philliphsu.clock2.alarms.misc.AlarmController;
 
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.

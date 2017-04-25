@@ -27,6 +27,8 @@ import com.philliphsu.clock2.data.BaseItemCursor;
 /**
  * Created by Phillip Hsu on 7/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimerCursor extends BaseItemCursor<Timer> {
 
     public TimerCursor(Cursor cursor) {

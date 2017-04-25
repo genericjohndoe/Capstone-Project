@@ -30,6 +30,8 @@ import com.philliphsu.clock2.R;
  *
  * Utilities for reading alarm preferences.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class AlarmPreferences {
     private static final String TAG = "AlarmPreferences";
 

@@ -30,6 +30,8 @@ import android.support.v7.app.AppCompatDialogFragment;
  *
  * Base class for creating AlertDialogs with 'cancel' and 'ok' actions.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class BaseAlertDialogFragment extends AppCompatDialogFragment {
 
     protected abstract void onOk();

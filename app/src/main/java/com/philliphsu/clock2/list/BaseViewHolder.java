@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Phillip Hsu on 5/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final Context mContext;

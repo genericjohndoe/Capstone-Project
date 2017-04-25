@@ -27,6 +27,8 @@ import com.philliphsu.clock2.data.SQLiteCursorLoader;
 /**
  * Created by Phillip Hsu on 6/28/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmsListCursorLoader extends SQLiteCursorLoader<Alarm, AlarmCursor> {
     public static final String ACTION_CHANGE_CONTENT
             = "com.philliphsu.clock2.alarms.data.action.CHANGE_CONTENT";

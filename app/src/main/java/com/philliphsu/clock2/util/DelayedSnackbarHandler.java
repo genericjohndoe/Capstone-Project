@@ -29,6 +29,8 @@ import android.view.View;
  * Useful when the Snackbar is created in an app component that
  * is not where it should be shown.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class DelayedSnackbarHandler {
     // TODO: Consider wrapping this in a WeakReference, so that you
     // don't prevent this from being GCed if you never call #show().

@@ -29,6 +29,8 @@ import java.util.Arrays;
 /**
  * Created by Phillip Hsu on 5/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class DaysOfWeek {
     private static final String TAG = "DaysOfWeek";
     // DAY_OF_WEEK constants in Calendar class not zero-based

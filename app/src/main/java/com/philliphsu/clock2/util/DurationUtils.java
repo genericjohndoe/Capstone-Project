@@ -30,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Phillip Hsu on 6/6/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class DurationUtils {
     public static final int DAYS = 0;
     public static final int HOURS = 1;

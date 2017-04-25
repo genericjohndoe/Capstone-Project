@@ -36,6 +36,8 @@ import com.philliphsu.clock2.R;
 /**
  * Created by Phillip Hsu on 9/6/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class TimePickerDialogController extends DialogFragmentController<BottomSheetTimePickerDialog> {
     private static final String TAG = "TimePickerController";
 

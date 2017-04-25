@@ -42,6 +42,8 @@ import com.philliphsu.clock2.util.ParcelableUtil;
  * a single task and immediately destroy itself, which means we lose all of
  * our instance state.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimerNotificationService extends ChronometerNotificationService {
     private static final String TAG = "TimerNotifService";
 

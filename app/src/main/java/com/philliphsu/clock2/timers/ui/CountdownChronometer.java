@@ -29,6 +29,8 @@ import com.philliphsu.clock2.chronometer.BaseChronometer;
  * towards the base time. The ability to count down was added to Chronometer
  * in API 24.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class CountdownChronometer extends BaseChronometer {
     private static final String TAG = "CountdownChronometer";
 

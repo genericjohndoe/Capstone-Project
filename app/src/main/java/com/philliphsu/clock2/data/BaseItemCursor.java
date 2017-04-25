@@ -26,6 +26,8 @@ import android.util.Log;
 /**
  * Created by Phillip Hsu on 7/29/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class BaseItemCursor<T extends ObjectWithId> extends CursorWrapper {
     private static final String TAG = "BaseItemCursor";
 

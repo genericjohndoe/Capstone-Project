@@ -27,6 +27,8 @@ import android.view.inputmethod.InputMethodManager;
 /**
  * Created by Phillip Hsu on 6/5/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class KeyboardUtils {
 
     public static void hideKeyboard(Activity a) {

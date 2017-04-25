@@ -37,6 +37,8 @@ import com.philliphsu.clock2.R;
 /**
  * Created by Phillip Hsu on 9/10/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class ChronometerNotificationService extends Service {
     public static final String ACTION_START_PAUSE = "com.philliphsu.clock2.timers.action.START_PAUSE";
     public static final String ACTION_STOP = "com.philliphsu.clock2.timers.action.STOP";

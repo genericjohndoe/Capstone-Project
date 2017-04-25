@@ -37,6 +37,8 @@ import android.support.v4.app.NotificationCompat;
  * have built-in support for using a chronometer, it lacks pause/resume functionality
  * and the ability to choose between count up or count down.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ChronometerNotificationThread extends HandlerThread {
     private static final String TAG = "ChronomNotifThread";
 

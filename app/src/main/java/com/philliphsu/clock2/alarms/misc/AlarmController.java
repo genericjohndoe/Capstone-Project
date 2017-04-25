@@ -53,6 +53,8 @@ import static java.util.concurrent.TimeUnit.HOURS;
  * API to control alarm states and update the UI.
  * TODO: Rename to AlarmStateHandler? AlarmStateController?
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class AlarmController {
     private static final String TAG = "AlarmController";
 

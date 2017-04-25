@@ -26,6 +26,8 @@ import com.philliphsu.clock2.data.ObjectWithId;
 /**
  * Created by Phillip Hsu on 8/8/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class Lap extends ObjectWithId {
 
     private long t1;

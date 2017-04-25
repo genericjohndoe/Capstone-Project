@@ -40,6 +40,8 @@ import static com.philliphsu.clock2.alarms.misc.DaysOfWeek.WEDNESDAY;
 // this method has the advantage of keeping the contents of
 // the Alarm class as pure Java, which can facilitate unit testing
 // because it has no dependence on Cursor, which is part of the Android SDK.
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmCursor extends BaseItemCursor<Alarm> {
     private static final String TAG = "AlarmCursor";
 

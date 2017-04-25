@@ -39,6 +39,8 @@ import java.util.Locale;
  *
  * TODO: Refactor by using the ChronometerDelegate class.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmCountdown extends TextView {
     private static final String TAG = "AlarmCountdown";
 

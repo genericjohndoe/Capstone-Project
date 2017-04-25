@@ -30,6 +30,8 @@ import com.philliphsu.clock2.timers.data.TimerCursor;
 /**
  * Created by Phillip Hsu on 7/29/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimersCursorAdapter extends BaseCursorAdapter<Timer, TimerViewHolder, TimerCursor> {
 
     private final AsyncTimersTableUpdateHandler mAsyncTimersTableUpdateHandler;

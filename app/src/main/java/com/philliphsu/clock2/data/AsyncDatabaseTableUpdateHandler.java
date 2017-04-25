@@ -27,6 +27,8 @@ import com.philliphsu.clock2.list.ScrollHandler;
 /**
  * Created by Phillip Hsu on 7/1/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class AsyncDatabaseTableUpdateHandler<
         T extends ObjectWithId,
         TM extends DatabaseTableManager<T>> {

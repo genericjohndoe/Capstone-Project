@@ -27,6 +27,8 @@ import android.widget.TextView;
 /**
  * Created by Phillip Hsu on 7/16/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimeTextUtils {
 
     private TimeTextUtils() {}

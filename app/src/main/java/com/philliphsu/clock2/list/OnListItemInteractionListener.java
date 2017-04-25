@@ -22,6 +22,8 @@ package com.philliphsu.clock2.list;
 /**
  * Created by Phillip Hsu on 5/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public interface OnListItemInteractionListener<T> {
     void onListItemClick(T item, int position);
     void onListItemDeleted(T item);

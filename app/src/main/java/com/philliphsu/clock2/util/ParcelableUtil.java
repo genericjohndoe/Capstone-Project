@@ -25,6 +25,8 @@ import android.os.Parcelable;
 /**
  * Utilities to marshall and unmarshall a {@code Parcelable} to and from a byte array.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class ParcelableUtil {
     public static byte[] marshall(Parcelable parcelable) {
         Parcel parcel = Parcel.obtain();

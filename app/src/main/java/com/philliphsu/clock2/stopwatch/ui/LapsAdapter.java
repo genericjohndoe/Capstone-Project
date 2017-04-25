@@ -29,6 +29,8 @@ import com.philliphsu.clock2.stopwatch.data.LapCursor;
 /**
  * Created by Phillip Hsu on 8/9/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class LapsAdapter extends BaseCursorAdapter<Lap, LapViewHolder, LapCursor> {
     public static final int VIEW_TYPE_FIRST_LAP = 1; // TOneverDO: 0, that's the default view type
 

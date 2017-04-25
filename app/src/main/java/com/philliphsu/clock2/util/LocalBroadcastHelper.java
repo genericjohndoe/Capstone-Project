@@ -29,6 +29,8 @@ import android.support.v4.content.LocalBroadcastManager;
 /**
  * Created by Phillip Hsu on 6/14/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class LocalBroadcastHelper {
 
     /** Sends a local broadcast using an intent with the action specified */

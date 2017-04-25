@@ -42,6 +42,8 @@ import butterknife.Bind;
 /**
  * Created by Phillip Hsu on 7/26/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class RecyclerViewFragment<
         T extends ObjectWithId,
         VH extends BaseViewHolder<T>,

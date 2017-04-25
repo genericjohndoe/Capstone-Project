@@ -35,6 +35,8 @@ import static com.philliphsu.clock2.util.KeyboardUtils.showKeyboard;
  * TODO: If we have any other needs for a dialog with an EditText, rename this to EditTextDialog,
  * and change the callback interface name appropriately.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AddLabelDialog extends BaseAlertDialogFragment {
 
     private EditText mEditText;

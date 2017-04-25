@@ -49,6 +49,8 @@ import butterknife.OnClick;
 /**
  * Created by Phillip Hsu on 7/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ExpandedAlarmViewHolder extends BaseAlarmViewHolder {
     private static final String TAG = "ExpandedAlarmViewHolder";
 

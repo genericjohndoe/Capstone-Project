@@ -30,6 +30,8 @@ import com.philliphsu.clock2.util.LocalBroadcastHelper;
 /**
  * Created by Phillip Hsu on 7/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class DatabaseTableManager<T extends ObjectWithId> {
     // TODO: Consider implementing BaseColumns for your table schemas.
     // This column should be present in all table schemas, and the value is simple enough

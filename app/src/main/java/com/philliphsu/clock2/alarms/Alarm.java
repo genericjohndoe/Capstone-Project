@@ -38,6 +38,8 @@ import static com.philliphsu.clock2.alarms.misc.DaysOfWeek.SUNDAY;
 /**
  * Created by Phillip Hsu on 5/26/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 @AutoValue
 public abstract class Alarm extends ObjectWithId implements Parcelable {
     private static final int MAX_MINUTES_CAN_SNOOZE = 30;

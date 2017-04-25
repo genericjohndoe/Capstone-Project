@@ -29,6 +29,8 @@ import com.philliphsu.clock2.data.ObjectWithId;
 /**
  * Created by Phillip Hsu on 7/29/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class BaseCursorAdapter<
         T extends ObjectWithId,
         VH extends BaseViewHolder<T>,

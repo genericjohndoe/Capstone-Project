@@ -37,6 +37,8 @@ import com.philliphsu.clock2.util.ParcelableUtil;
 import static com.philliphsu.clock2.util.TimeFormatUtils.formatTime;
 
 // TODO: Consider registering this locally instead of in the manifest.
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class UpcomingAlarmReceiver extends BroadcastReceiver {
     private static final String TAG = "UpcomingAlarmReceiver";
     /*TOneverDO: not private*/

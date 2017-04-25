@@ -30,6 +30,8 @@ import com.philliphsu.clock2.timers.data.TimersTable;
 /**
  * Created by Phillip Hsu on 7/30/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ClockAppDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "ClockAppDatabaseHelper";
     private static final String DB_NAME = "clock_app.db";

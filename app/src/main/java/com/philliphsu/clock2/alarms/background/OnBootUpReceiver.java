@@ -22,7 +22,8 @@ package com.philliphsu.clock2.alarms.background;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class OnBootUpReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

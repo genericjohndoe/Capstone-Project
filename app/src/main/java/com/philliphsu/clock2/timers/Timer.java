@@ -31,6 +31,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Phillip Hsu on 7/25/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 @AutoValue
 public abstract class Timer extends ObjectWithId implements Parcelable {
     private static final long MINUTE = TimeUnit.MINUTES.toMillis(1);

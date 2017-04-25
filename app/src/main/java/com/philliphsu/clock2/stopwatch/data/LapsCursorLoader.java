@@ -27,6 +27,8 @@ import com.philliphsu.clock2.stopwatch.Lap;
 /**
  * Created by Phillip Hsu on 8/9/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class LapsCursorLoader extends SQLiteCursorLoader<Lap, LapCursor> {
     public static final String ACTION_CHANGE_CONTENT
             = "com.philliphsu.clock2.stopwatch.data.action.CHANGE_CONTENT";

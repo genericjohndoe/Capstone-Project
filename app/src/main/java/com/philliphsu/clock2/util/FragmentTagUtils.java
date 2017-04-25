@@ -24,6 +24,8 @@ import android.support.annotation.IdRes;
 /**
  * Created by Phillip Hsu on 9/7/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class FragmentTagUtils {
 
     /**

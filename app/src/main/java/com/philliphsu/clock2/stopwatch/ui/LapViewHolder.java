@@ -32,6 +32,8 @@ import butterknife.Bind;
 /**
  * Created by Phillip Hsu on 8/8/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class LapViewHolder extends BaseViewHolder<Lap> {
 
     @Bind(R.id.lap_number) TextView mLapNumber;

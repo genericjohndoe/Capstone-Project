@@ -24,6 +24,8 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by Phillip Hsu on 8/8/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class LapsTable {
     private LapsTable() {}
 

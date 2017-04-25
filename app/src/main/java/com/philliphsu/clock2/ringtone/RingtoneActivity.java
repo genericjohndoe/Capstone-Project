@@ -47,6 +47,8 @@ import butterknife.OnClick;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class RingtoneActivity<T extends Parcelable> extends BaseActivity {
     private static final String TAG = "RingtoneActivity";
 

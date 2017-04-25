@@ -28,6 +28,8 @@ import com.philliphsu.clock2.chronometer.BaseChronometer;
  * A modified version of the framework's Chronometer widget that shows
  * up to hundredths of a second.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ChronometerWithMillis extends BaseChronometer {
     private static final String TAG = "ChronometerWithMillis";
 

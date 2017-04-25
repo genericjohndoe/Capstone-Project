@@ -52,7 +52,8 @@ import butterknife.Bind;
 import static com.philliphsu.clock2.R.id.container;
 import static com.philliphsu.clock2.list.RecyclerViewFragment.ACTION_SCROLL_TO_STABLE_ID;
 import static com.philliphsu.clock2.list.RecyclerViewFragment.EXTRA_SCROLL_TO_STABLE_ID;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//chnaged the fragments in the viewpager, added new menuitem that shows weather data after clicking on it
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 

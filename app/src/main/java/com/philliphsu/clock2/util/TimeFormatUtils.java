@@ -29,6 +29,8 @@ import static android.text.format.DateFormat.getTimeFormat;
 /**
  * Created by Phillip Hsu on 6/3/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class TimeFormatUtils {
 
     private TimeFormatUtils() {}

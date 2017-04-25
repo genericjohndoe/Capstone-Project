@@ -26,6 +26,8 @@ import com.philliphsu.clock2.timers.data.AsyncTimersTableUpdateHandler;
 /**
  * Created by Phillip Hsu on 7/27/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimerController {
     private static final String TAG = "TimerController";
     private final Timer mTimer;

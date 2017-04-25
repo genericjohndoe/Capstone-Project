@@ -45,6 +45,8 @@ import com.philliphsu.clock2.ringtone.playback.RingtoneLoop;
  * We might need to play the ringtone from a Service instead, so we won't have to worry about
  * the ringtone being destroyed on rotation.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class RingtonePickerDialog extends BaseAlertDialogFragment {
     private static final String TAG = "RingtonePickerDialog";
     private static final String KEY_RINGTONE_URI = "key_ringtone_uri";

@@ -24,6 +24,8 @@ package com.philliphsu.clock2.data;
  *
  * Superclass for objects that can be persisted in SQLite.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class ObjectWithId {
     private long id;
 

@@ -32,7 +32,8 @@ import com.philliphsu.clock2.alarms.misc.AlarmController;
 import com.philliphsu.clock2.alarms.misc.AlarmPreferences;
 
 import static com.philliphsu.clock2.util.TimeFormatUtils.formatTime;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmRingtoneService extends RingtoneService<Alarm> {
     private static final String TAG = "AlarmRingtoneService";
     /* TOneverDO: not private */

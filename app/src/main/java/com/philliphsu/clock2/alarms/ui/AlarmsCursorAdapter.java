@@ -31,6 +31,8 @@ import com.philliphsu.clock2.alarms.misc.AlarmController;
 /**
  * Created by Phillip Hsu on 6/29/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class AlarmsCursorAdapter extends BaseCursorAdapter<Alarm, BaseAlarmViewHolder, AlarmCursor> {
     private static final String TAG = "AlarmsCursorAdapter";
     private static final int VIEW_TYPE_COLLAPSED = 0;

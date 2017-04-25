@@ -43,7 +43,8 @@ import com.philliphsu.clock2.timers.data.TimersListCursorLoader;
 
 import static butterknife.ButterKnife.findById;
 import static com.philliphsu.clock2.util.ConfigurationUtils.getOrientation;
-
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class TimersFragment extends RecyclerViewFragment<Timer, TimerViewHolder, TimerCursor, TimersCursorAdapter> {
     // TODO: Different number of columns for different display densities, instead of landscape.
     // Use smallest width qualifiers. I can imagine 3 or 4 columns for a large enough tablet in landscape.

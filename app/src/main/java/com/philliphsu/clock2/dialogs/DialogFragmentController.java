@@ -27,6 +27,8 @@ import android.util.Log;
 /**
  * Created by Phillip Hsu on 9/6/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class DialogFragmentController<T extends DialogFragment> {
     private static final String TAG = "DialogController";
 

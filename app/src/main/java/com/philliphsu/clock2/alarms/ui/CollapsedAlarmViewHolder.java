@@ -37,6 +37,8 @@ import static com.philliphsu.clock2.alarms.misc.DaysOfWeek.NUM_DAYS;
 /**
  * Created by Phillip Hsu on 5/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class CollapsedAlarmViewHolder extends BaseAlarmViewHolder {
 
     @Bind(R.id.countdown) AlarmCountdown mCountdown;

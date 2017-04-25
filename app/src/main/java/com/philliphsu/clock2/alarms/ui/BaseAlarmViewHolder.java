@@ -63,6 +63,8 @@ import static com.philliphsu.clock2.util.TimeFormatUtils.formatTime;
 /**
  * Created by Phillip Hsu on 7/31/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public abstract class BaseAlarmViewHolder extends BaseViewHolder<Alarm> {
     private static final String TAG = "BaseAlarmViewHolder";
 

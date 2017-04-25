@@ -33,6 +33,8 @@ import com.philliphsu.clock2.alarms.misc.AlarmController;
  * Created by Phillip Hsu on 7/1/2016.
  * TODO: Consider making an AsyncDatabaseChangeHandlerWithSnackbar abstract class
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public final class AsyncAlarmsTableUpdateHandler extends AsyncDatabaseTableUpdateHandler<Alarm, AlarmsTableManager> {
     private static final String TAG = "AsyncAlarmsTableUpdateHandler";
 

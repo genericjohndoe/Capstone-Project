@@ -25,6 +25,8 @@ import android.widget.ProgressBar;
 /**
  * Created by Phillip Hsu on 8/10/2016.
  */
+//orginial source: https://github.com/philliphsu/ClockPlus
+//no changes made
 public class ProgressBarUtils {
     private static final int MAX_PROGRESS = 1000000;
 
