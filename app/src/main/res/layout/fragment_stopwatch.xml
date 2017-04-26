@@ -57,14 +57,16 @@
 
         <ImageButton
             android:id="@+id/new_lap"
-            style="@style/AddLapButton"/>
+            style="@style/AddLapButton"
+            android:contentDescription="@string/new_lap"/>
 
         <Space app:layout_columnWeight="1"
             app:layout_gravity="center"/> <!--Necessary to get correct spacing-->
 
         <ImageButton
             android:id="@+id/stop"
-            style="@style/StopButton"/>
+            style="@style/StopButton"
+            android:contentDescription="@string/stop_stopwatch"/>
 
     </android.support.v7.widget.GridLayout>
 

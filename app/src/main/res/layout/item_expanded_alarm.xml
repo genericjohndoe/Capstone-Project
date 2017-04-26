@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="?android:attr/selectableItemBackground"
-                    android:text="Ringtone"
+                    android:text="@string/Ringtone"
                     android:gravity="center_vertical"
                     android:textAppearance="@style/TextAppearance.AppCompat"
                     android:textSize="@dimen/text_size_medium"

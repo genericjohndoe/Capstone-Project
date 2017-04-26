@@ -58,21 +58,24 @@
             android:src="@drawable/ic_start_24dp"
             android:layout_below="@id/seek_bar"
             android:layout_centerHorizontal="true"
-            style="@style/TimerAction"/>
+            style="@style/TimerAction"
+            android:contentDescription="@string/seekbar"/>
 
         <ImageButton
             android:id="@+id/stop"
             android:src="@drawable/ic_stop_24dp"
             android:layout_below="@id/seek_bar"
             android:layout_alignParentEnd="true"
-            style="@style/TimerAction"/>
+            style="@style/TimerAction"
+            android:contentDescription="@string/stop_tiemr"/>
 
         <ImageButton
             android:id="@+id/menu"
             android:src="@drawable/ic_overflow_24dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            style="@style/TimerAction.Menu"/>
+            style="@style/TimerAction.Menu"
+            android:contentDescription="@string/timer_menu"/>
 
     </RelativeLayout>
 

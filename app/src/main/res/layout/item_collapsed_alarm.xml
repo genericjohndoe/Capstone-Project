@@ -61,7 +61,7 @@
             android:id="@+id/recurring_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mon, Tue, Wed, Thu, Fri, Sat, Sun"
+            android:text="@string/days"
             android:layout_below="@id/label"
             android:layout_marginBottom="@dimen/item_margin_between_elements"/>
 

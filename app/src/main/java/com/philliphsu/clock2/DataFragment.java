@@ -37,16 +37,17 @@ import butterknife.Bind;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- *
  */
 public class DataFragment extends BaseFragment implements LoaderManager.LoaderCallbacks, IAxisValueFormatter {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private Cursor cursor;
     private List<Entry> entries = new ArrayList<Entry>();
-    @Bind(R.id.chart) LineChart chart;
+    @Bind(R.id.chart)
+    LineChart chart;
 
-    public DataFragment() {}
+    public DataFragment() {
+    }
 
 
     @Override
@@ -71,7 +72,6 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -88,7 +88,7 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(getActivity(), ActivityColumns.ActivityEntry.CONTENT_URI,
-                new String[]{ActivityColumns.ActivityEntry._ID, ActivityColumns.ActivityEntry.DIST_RAN,ActivityColumns.ActivityEntry.TIME_RUNNING, ActivityColumns.ActivityEntry.DATE,
+                new String[]{ActivityColumns.ActivityEntry._ID, ActivityColumns.ActivityEntry.DIST_RAN, ActivityColumns.ActivityEntry.TIME_RUNNING, ActivityColumns.ActivityEntry.DATE,
                         ActivityColumns.ActivityEntry.IS_LONG_DIST,}, ActivityColumns.ActivityEntry.IS_LONG_DIST + " = ?",
                 new String[]{"1"}, null);
     }
@@ -96,37 +96,39 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onLoadFinished(Loader loader, Object o) {
         cursor = (Cursor) o;
-        Log.i("Logs", ""+cursor.getCount());
-        if (cursor.getCount() > 0){
-        for (int i = 0; i < cursor.getCount(); i++){
-            if (cursor.moveToPosition(i)){
-                long date = cursor.getLong(cursor.getColumnIndex(ActivityColumns.ActivityEntry.DATE));
-                double minutesPerMile = cursor.getLong(cursor.getColumnIndex(ActivityColumns.ActivityEntry.TIME_RUNNING))/
-                        cursor.getDouble(cursor.getColumnIndex(ActivityColumns.ActivityEntry.DIST_RAN));
-                entries.add(new Entry(date, (float) minutesPerMile));
+        Log.i("Logs", "" + cursor.getCount());
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                if (cursor.moveToPosition(i)) {
+                    long date = cursor.getLong(cursor.getColumnIndex(ActivityColumns.ActivityEntry.DATE));
+                    double minutesPerMile = cursor.getLong(cursor.getColumnIndex(ActivityColumns.ActivityEntry.TIME_RUNNING)) /
+                            cursor.getDouble(cursor.getColumnIndex(ActivityColumns.ActivityEntry.DIST_RAN));
+                    entries.add(new Entry(date, (float) minutesPerMile));
+                }
             }
-        }
+            Collections.sort(entries, new EntryXComparator());
+            LineDataSet dataSet = new LineDataSet(entries, "Average Mile Times");
+            LineData lineData = new LineData(dataSet);
+            chart.setData(lineData);
+            XAxis xAxis = chart.getXAxis();
+            xAxis.setValueFormatter(this);
+            xAxis.setLabelRotationAngle(45f);
+            YAxis yAxis = chart.getAxisLeft();
+            yAxis.setAxisMinimum(0f);
+            chart.invalidate();
         } else {
-            CharSequence text = "Hello toast!";
+            CharSequence text = "No Data";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(getContext(), text, duration);
             toast.show();
         }
-        Collections.sort(entries, new EntryXComparator());
-        LineDataSet dataSet = new LineDataSet(entries, "Average Mile Times");
-        LineData lineData = new LineData(dataSet);
-        chart.setData(lineData);
-        XAxis xAxis = chart.getXAxis();
-        xAxis.setValueFormatter(this);
-        xAxis.setLabelRotationAngle(45f);
-        YAxis yAxis = chart.getAxisLeft();
-        yAxis.setAxisMinimum(0f);
-        chart.invalidate();
+
 
     }
 
     @Override
-    public void onLoaderReset(Loader loader) {}
+    public void onLoaderReset(Loader loader) {
+    }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {

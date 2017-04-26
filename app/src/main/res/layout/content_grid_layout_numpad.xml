@@ -23,51 +23,51 @@
     <Button
         android:id="@+id/one"
         style="@style/GridLayoutNumpadButton"
-        android:text="1"/>
+        android:text="@string/one"/>
 
     <Button
         android:id="@+id/two"
         style="@style/GridLayoutNumpadButton"
-        android:text="2"/>
+        android:text="@string/two"/>
 
     <Button
         android:id="@+id/three"
         style="@style/GridLayoutNumpadButton"
-        android:text="3"/>
+        android:text="@string/three"/>
 
     <Button
         android:id="@+id/four"
         style="@style/GridLayoutNumpadButton"
-        android:text="4"/>
+        android:text="@string/four"/>
 
     <Button
         android:id="@+id/five"
         style="@style/GridLayoutNumpadButton"
-        android:text="5"/>
+        android:text="@string/five"/>
 
     <Button
         android:id="@+id/six"
         style="@style/GridLayoutNumpadButton"
-        android:text="6"/>
+        android:text="@string/six"/>
 
     <Button
         android:id="@+id/seven"
         style="@style/GridLayoutNumpadButton"
-        android:text="7"/>
+        android:text="@string/seven"/>
 
     <Button
         android:id="@+id/eight"
         style="@style/GridLayoutNumpadButton"
-        android:text="8"/>
+        android:text="@string/eight"/>
 
     <Button
         android:id="@+id/nine"
         style="@style/GridLayoutNumpadButton"
-        android:text="9"/>
+        android:text="@string/nine"/>
 
     <Button
         android:id="@+id/zero"
         style="@style/GridLayoutNumpadButton"
         grid:layout_column="1"
-        android:text="0"/>
+        android:text="@string/zero"/>
 </merge>
