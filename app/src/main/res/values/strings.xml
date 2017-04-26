@@ -62,7 +62,7 @@
     <string name="hours_and_minute">%2$d hours and 1 minute</string>
     <string name="hours_and_minutes">%2$d hours and %3$d minutes</string>
     <string name="day">1 day</string>
-    <string name="days">%1$d days</string>
+    <string name="day_s">%1$d days</string>
     <string name="hour">1 hour</string>
     <string name="hours">%2$d hours</string>
     <string name="minute">1 minute</string>
@@ -96,16 +96,7 @@
 
     <string name="every_day">Every day</string>
 
-    <string name="zero">0</string>
-    <string name="one">1</string>
-    <string name="two">2</string>
-    <string name="three">3</string>
-    <string name="four">4</string>
-    <string name="five">5</string>
-    <string name="six">6</string>
-    <string name="seven">7</string>
-    <string name="eight">8</string>
-    <string name="nine">9</string>
+
     <string name="left_alt_24hr">:00</string>
     <string name="right_alt_24hr">:30</string>
     <string name="am">AM</string>
@@ -264,7 +255,7 @@
     <string name="nine">9</string>
     <string name="zero">0</string>
     <string name="noon">12:00</string>
-    <string name="days">Mon, Tue, Wed, Thu, Fri, Sat, Sun</string>
+    <string name="weekdays">Mon, Tue, Wed, Thu, Fri, Sat, Sun</string>
     <string name="Ringtone">Ringtone</string>
 
 </resources>

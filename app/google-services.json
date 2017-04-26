@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1041485239575:android:a6f96e0fb80d1176",
         "android_client_info": {
-          "package_name": "com.philliphsu.clock2.debug"
+          "package_name": "com.philliphsu.clock2"
         }
       },
       "oauth_client": [

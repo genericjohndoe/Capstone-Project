@@ -94,9 +94,9 @@ public class ActivityRemoteViewService extends RemoteViewsService {
 
 
 
-                //final Intent fillInIntent = new Intent();
-                //fillInIntent.setData(ActivityColumns.ActivityEntry.CONTENT_URI.buildUpon().appendPath(ActivityColumns.ActivityEntry._ID).build());
-                //views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
+                final Intent fillInIntent = new Intent();
+                fillInIntent.setData(ActivityColumns.ActivityEntry.CONTENT_URI.buildUpon().appendPath(ActivityColumns.ActivityEntry._ID).build());
+                views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
                 return views;
             }
 

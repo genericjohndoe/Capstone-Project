@@ -187,7 +187,7 @@ public class DurationUtils {
         } else {
             if (numHours == 0) {
                 if (numMins == 0) {
-                    res = R.string.days;
+                    res = R.string.day_s;
                 } else if (numMins == 1) {
                     res = R.string.days_and_minute;
                 } else {

@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -116,11 +115,6 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
             YAxis yAxis = chart.getAxisLeft();
             yAxis.setAxisMinimum(0f);
             chart.invalidate();
-        } else {
-            CharSequence text = "No Data";
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(getContext(), text, duration);
-            toast.show();
         }
 
 

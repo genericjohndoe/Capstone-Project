@@ -128,7 +128,7 @@
             android:exported="false"></service>
 
         <activity
-            android:name=".debug.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <provider
             android:authorities="com.philliphsu.clock2.app"
