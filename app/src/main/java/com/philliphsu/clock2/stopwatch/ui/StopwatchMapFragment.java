@@ -611,7 +611,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         // Get the current location of the device and set the position of the map.
         //nullpointerexception seen
         if (statusCheck()) {
-           // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
+            // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
         }
     }
 
