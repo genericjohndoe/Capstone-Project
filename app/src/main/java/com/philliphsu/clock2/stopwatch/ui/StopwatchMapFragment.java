@@ -289,14 +289,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
     public void onPause() {
         super.onPause();
         //Log.i(LOG_TAG, "onPause() called");
-        long timeRunning = startDateAndTime - endDateAndTime;
-        ContentValues mNewValues = new ContentValues();
-        mNewValues.put(ActivityColumns.ActivityEntry.DATE, Calendar.getInstance().getTimeInMillis());
-        mNewValues.put(ActivityColumns.ActivityEntry.DIST_RAN, distanceRan * 0.000621371);//value converts meters to miles
-        mNewValues.put(ActivityColumns.ActivityEntry.TIME_RUNNING, timeRunning / 1000 / 60); //converts milliseconds to minutes
-        mNewValues.put(ActivityColumns.ActivityEntry.IS_LONG_DIST, 1);
-        //Log.i(LOG_TAG, mNewValues.toString());
-        //Uri mUri = getActivity().getContentResolver().insert(ActivityColumns.ActivityEntry.CONTENT_URI, mNewValues);
+
         //Log.i(LOG_TAG,"data added: " + mUri.toString());
     }
 
@@ -446,6 +439,14 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         Intent stop = new Intent(getActivity(), StopwatchNotificationService.class)
                 .setAction(StopwatchNotificationService.ACTION_STOP);
         getActivity().startService(stop);
+        long timeRunning = startDateAndTime - endDateAndTime;
+        ContentValues mNewValues = new ContentValues();
+        mNewValues.put(ActivityColumns.ActivityEntry.DATE, Calendar.getInstance().getTimeInMillis());
+        mNewValues.put(ActivityColumns.ActivityEntry.DIST_RAN, distanceRan * 0.000621371);//value converts meters to miles
+        mNewValues.put(ActivityColumns.ActivityEntry.TIME_RUNNING, timeRunning / 1000 / 60); //converts milliseconds to minutes
+        mNewValues.put(ActivityColumns.ActivityEntry.IS_LONG_DIST, 1);
+        //Log.i(LOG_TAG, mNewValues.toString());
+        getActivity().getContentResolver().insert(ActivityColumns.ActivityEntry.CONTENT_URI, mNewValues);
         endDateAndTime = Calendar.getInstance().getTimeInMillis();
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
@@ -610,7 +611,7 @@ public class StopwatchMapFragment extends RecyclerViewFragment<
         // Get the current location of the device and set the position of the map.
         //nullpointerexception seen
         if (statusCheck()) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
+           // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), 20));
         }
     }
 

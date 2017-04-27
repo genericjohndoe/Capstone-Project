@@ -95,6 +95,7 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onLoadFinished(Loader loader, Object o) {
         cursor = (Cursor) o;
+        cursor.setNotificationUri(getActivity().getContentResolver(), ActivityColumns.ActivityEntry.CONTENT_URI);
         Log.i("Logs", "" + cursor.getCount());
         if (cursor.getCount() > 0) {
             for (int i = 0; i < cursor.getCount(); i++) {
@@ -129,5 +130,11 @@ public class DataFragment extends BaseFragment implements LoaderManager.LoaderCa
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis((long) value);
         return new SimpleDateFormat(getString(R.string.date_format)).format(cal.getTime());
+    }
+
+    @Override
+    public void onPageSelected() {
+        super.onPageSelected();
+        getLoaderManager().restartLoader(0, null, this);
     }
 }

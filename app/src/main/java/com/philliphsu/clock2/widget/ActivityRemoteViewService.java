@@ -83,7 +83,9 @@ public class ActivityRemoteViewService extends RemoteViewsService {
                 long timeInMills = data.getLong(data.getColumnIndex(columns[1]));
                 Calendar date = Calendar.getInstance();
                 date.setTimeInMillis(timeInMills);
-                dateString = date.toString();
+                int month = date.get(Calendar.MONTH) + 1;
+                int day = date.get(Calendar.DAY_OF_MONTH);
+                dateString = month +"/"+day + " - - ";
                 distance = data.getDouble(data.getColumnIndex(columns[2]));
                 minutes = data.getDouble(data.getColumnIndex(columns[3]));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
