@@ -46,9 +46,9 @@ android {
     }*/
     signingConfigs {
         config {
-            keyAlias 'key()'
+            keyAlias 'key'
             keyPassword 'udacity'
-            storeFile file("src/main/java/com/philliphsu/keystore.jks")
+            storeFile file('/src/keystore.jks')
             storePassword 'udacity'
         }
     }
